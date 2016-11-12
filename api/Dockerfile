@@ -3,8 +3,6 @@ FROM node:7.1.0
 
 RUN mkdir -p /home/app
 
-VOLUME ./:/home/app:rw
-
 ADD . /home/app
 
 RUN chmod 777 /home/app
@@ -17,4 +15,4 @@ RUN npm run compile
 
 EXPOSE 9000 9000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]
