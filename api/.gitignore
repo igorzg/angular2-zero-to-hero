@@ -1,0 +1,8 @@
+# compiled output
+build
+# dependencies
+node_modules
+
+# IDEs and editors
+.idea
+npm-debug.log
