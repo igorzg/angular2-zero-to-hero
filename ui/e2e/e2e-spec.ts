@@ -1,4 +1,4 @@
-import { ZeroToHeroPage } from './app.po';
+import { ZeroToHeroPage } from './po';
 
 describe('zero-to-hero App', function() {
   let page: ZeroToHeroPage;
