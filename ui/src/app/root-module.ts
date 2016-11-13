@@ -22,7 +22,6 @@ import { CommonModule } from "@angular/common";
     ]),
     RootRoutingModule
   ],
-  exports: [],
   providers: [CommonModule],
   bootstrap: [RootComponent]
 })

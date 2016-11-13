@@ -56,6 +56,16 @@ export class Application implements IAfterConstruct{
 
     this.router.addRules([
       {
+        methods: [Methods.OPTIONS],
+        route: "core/options",
+        url: "*"
+      },
+      {
+        methods: [Methods.POST],
+        route: "core/authenticate",
+        url: "/authenticate"
+      },
+      {
         methods: [Methods.GET],
         route: "core/favicon",
         url: "/favicon.ico"

@@ -22,14 +22,14 @@ export class HttpService {
    * Http handler
    */
   @Inject(Http)
-  private http: Http;
+  private http;
   /**
    * @param {Authentication} auth
    * @description
    * Authentication service
    */
   @Inject(Authentication)
-  private auth: Authentication;
+  private auth;
 
   /**
    * @function

@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http, BaseRequestOptions} from "@angular/http";
 import {environment} from "../../../environments/environment";
 import {BehaviorSubject} from "rxjs";
@@ -17,6 +17,8 @@ export const SESSION_KEY = 'Authorization';
 export enum AuthStatus {
   LOGIN,
   LOGGED_IN,
+  INVALID_CREDENTIALS,
+  LOGIN_ATTEMPT,
   LOGOUT
 }
 
@@ -32,13 +34,6 @@ export enum AuthStatus {
 @Injectable()
 export class Authentication{
   /**
-   * @param {Http} http
-   * @description
-   * Http provider
-   */
-  @Inject(Http)
-  private http: Http;
-  /**
    * @param {Boolean} statusChange
    * @description
    * Authentication status
@@ -52,7 +47,7 @@ export class Authentication{
    * @description
    * On construct assign status change
    */
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: Http) {
     this.onAuthChange((status) => {
       let auth = getCookie(SESSION_KEY);
       switch (status) {
@@ -69,6 +64,7 @@ export class Authentication{
             router.navigateByUrl("/admin");
           }
           break;
+        case AuthStatus.INVALID_CREDENTIALS:
         case AuthStatus.LOGOUT:
           removeCookie(SESSION_KEY);
           router.navigateByUrl("/login");
@@ -102,11 +98,12 @@ export class Authentication{
    * @description
    * authenticate to system via username and password
    */
-  doLogin(username: string, password: string) {
-    let requestOptions: BaseRequestOptions = new BaseRequestOptions();
-    requestOptions.headers.set("Content-Type", "application/json");
-    this.http
-      .post(
+  doLogin(username: string, password: string): Promise<AuthStatus> {
+    return new Promise((resolve, reject) => {
+      let requestOptions: BaseRequestOptions = new BaseRequestOptions();
+      requestOptions.headers.set("Content-Type", "application/json");
+      this.authStatus.next(AuthStatus.LOGIN_ATTEMPT);
+      this.http.post(
         environment.services.api + "/authenticate",
         JSON.stringify({
           username,
@@ -114,16 +111,20 @@ export class Authentication{
         }),
         requestOptions
       )
-      .map(item => item.json())
-      .subscribe(
-        (data: any) => {
-          setCookie(SESSION_KEY, data.token, 14);
-          setTimeout(() => this.authStatus.next(AuthStatus.LOGGED_IN), 100);
-        },
-        () => {
-          this.authStatus.next(AuthStatus.LOGOUT);
-        }
-      )
+        .map(item => item.json())
+        .subscribe(
+          (data: any) => {
+            setCookie(SESSION_KEY, data.token, 14);
+            setTimeout(() => this.authStatus.next(AuthStatus.LOGGED_IN), 100);
+            resolve(AuthStatus.LOGGED_IN);
+          },
+          () => {
+            this.authStatus.next(AuthStatus.INVALID_CREDENTIALS);
+            reject(AuthStatus.INVALID_CREDENTIALS);
+          }
+        );
+    });
+
   }
 
   /**

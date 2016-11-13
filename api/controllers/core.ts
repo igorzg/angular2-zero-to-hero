@@ -1,5 +1,5 @@
 import {Assets} from "../components/assets";
-import {Inject, Produces, Action, Controller, Param, RequestReflection, OnError} from "typeix";
+import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid} from "typeix";
 import {lookup} from "mime";
 /**
  * Controller example
@@ -48,6 +48,32 @@ export class CoreController {
 
   /**
    * @function
+   * @name setDefaultHeaders
+   *
+   * @description
+   * Set set default headers
+   *
+   */
+  private setDefaultHeaders() {
+    this.request.setResponseHeader("Access-Control-Allow-Origin", "*");
+    this.request.setResponseHeader("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, X-Api-Version, X-File-Name");
+    this.request.setResponseHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS, PATCH");
+  }
+
+  /**
+   * @function
+   * @name optionsMethod
+   *
+   * @description
+   * Handler for options method
+   */
+  @Action("options")
+  optionsMethod() {
+    this.setDefaultHeaders();
+    return "";
+  }
+  /**
+   * @function
    * @name fileLoadAction
    *
    * @description
@@ -76,8 +102,44 @@ export class CoreController {
    *
    */
   @Action("index")
-  @OnError(500, "My custom message")
+  @Produces("application/json")
   actionIndex(): string {
-    return "My action " + this.request.getCookie("Authorization");
+    return JSON.stringify({
+      name: "zeroToHeroService",
+      message: "Running",
+      time: Date.now()
+    });
+  }
+
+
+  /**
+   * @function
+   * @name doLogin
+   *
+   * @description
+   * Authenticate user
+   *
+   */
+  @Action("authenticate")
+  @Produces("application/json")
+  doLogin(): string {
+    this.setDefaultHeaders();
+    let body: any = {};
+
+    if (body.username === "admin" && body.password === "admin") {
+      return JSON.stringify({
+        token: uuid(),
+        message: "Success",
+        time: Date.now()
+      });
+    }
+
+    this.request.setStatusCode(401);
+
+    return JSON.stringify({
+      message: "Invalid credentials",
+      time: Date.now()
+    });
+
   }
 }
