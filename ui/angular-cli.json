@@ -17,7 +17,7 @@
       "tsconfig": "tsconfig.json",
       "mobile": false,
       "styles": [
-        "styles.sass"
+        "styles.scss"
       ],
       "scripts": [],
       "environments": {
@@ -40,7 +40,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

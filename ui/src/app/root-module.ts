@@ -1,10 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import {RootComponent} from "./root-component";
-import {RootRoutingModule} from "./sections/root-routing-module";
-import {RouterModule} from "@angular/router";
+import { RootComponent } from "./root-component";
+import { RootRoutingModule } from "./sections/root-routing-module";
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -12,7 +12,6 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     RouterModule.forRoot([
       {
@@ -23,7 +22,8 @@ import {RouterModule} from "@angular/router";
     ]),
     RootRoutingModule
   ],
-  providers: [],
+  exports: [],
+  providers: [CommonModule],
   bootstrap: [RootComponent]
 })
 export class RootModule { }
