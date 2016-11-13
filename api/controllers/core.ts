@@ -123,10 +123,12 @@ export class CoreController {
   @Action("authenticate")
   @Produces("application/json")
   doLogin(): string {
-    this.setDefaultHeaders();
-    let body: any = {};
 
-    if (body.username === "admin" && body.password === "admin") {
+    this.setDefaultHeaders();
+
+    let body: any = JSON.parse(this.request.getRequestBody().toString());
+
+    if (body.username === "admin@example.com" && body.password === "admin") {
       return JSON.stringify({
         token: uuid(),
         message: "Success",

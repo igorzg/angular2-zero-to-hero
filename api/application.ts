@@ -61,7 +61,7 @@ export class Application implements IAfterConstruct{
         url: "*"
       },
       {
-        methods: [Methods.POST],
+        methods: [Methods.GET, Methods.POST],
         route: "core/authenticate",
         url: "/authenticate"
       },

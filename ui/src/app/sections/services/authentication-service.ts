@@ -106,8 +106,8 @@ export class Authentication{
       this.http.post(
         environment.services.api + "/authenticate",
         JSON.stringify({
-          username,
-          password
+          username: username,
+          password: password
         }),
         requestOptions
       )
