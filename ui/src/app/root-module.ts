@@ -2,10 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import {RouterModule} from "@angular/router";
 import {RootComponent} from "./root-component";
-import {LoginModule} from "./sections/login/login-module";
-import {AdminModule} from "./sections/admin/admin-module";
+import {RootRoutingModule} from "./sections/root-routing-module";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import {AdminModule} from "./sections/admin/admin-module";
         redirectTo: "admin"
       }
     ]),
-    LoginModule,
-    AdminModule
+    RootRoutingModule
   ],
   providers: [],
   bootstrap: [RootComponent]
