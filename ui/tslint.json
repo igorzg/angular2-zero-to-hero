@@ -3,6 +3,10 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "quotemark": [
+      true,
+      "double"
+    ],
     "class-name": true,
     "comment-format": [
       true,
@@ -61,10 +65,7 @@
       "check-else",
       "check-whitespace"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
+
     "radix": true,
     "semicolon": [
       "always"
