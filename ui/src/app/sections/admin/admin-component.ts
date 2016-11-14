@@ -1,11 +1,11 @@
 import {Component} from "@angular/core";
-import {Authentication} from "../services/authentication-service";
+import {SideBarComponent} from "./components/side-bar/side-bar-component";
 
 /**
  * AdminComponent
  * @constructor
  * @function
- * @name AdminComponent
+ * @name SideBarComponent
  *
  * @description
  * Load navigation and main page area
@@ -14,18 +14,4 @@ import {Authentication} from "../services/authentication-service";
   selector: "admin",
   templateUrl: "admin-component.html"
 })
-export class AdminComponent{
-
-  constructor(private auth: Authentication) {}
-  /**
-   * @function
-   * @name AdminComponent#doLogout
-   *
-   * @description
-   * Logout action
-   */
-  doLogout($event) {
-    $event.preventDefault();
-    this.auth.doLogout();
-  }
-}
+export class AdminComponent{}
