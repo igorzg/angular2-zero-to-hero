@@ -1,5 +1,5 @@
 import {Assets} from "../components/assets";
-import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid} from "typeix";
+import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid, isEqual} from "typeix";
 import {lookup} from "mime";
 /**
  * Controller example
@@ -128,7 +128,7 @@ export class CoreController {
 
     let body: any = JSON.parse(this.request.getRequestBody().toString());
 
-    if (body.username === "admin@example.com" && body.password === "admin") {
+    if (isEqual(body.username, "admin") && isEqual(body.password, "admin")) {
       return JSON.stringify({
         token: uuid(),
         message: "Success",

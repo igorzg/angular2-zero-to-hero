@@ -4,7 +4,7 @@ import {Authentication, AuthStatus} from "../services/authentication-service";
  * LoginComponent
  * @constructor
  * @function
- * @name LoginComponent
+ * @name LogoutComponent
  *
  * @description
  * Login component
@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
    * Input labels
    */
   labels: any = {
-    password: "Password",
+    password: "Password:",
     submit: "Login",
-    email: "Email address"
+    email: "Username or email:"
   };
   /**
    * @param {Object} placeholders
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
    * Input placeholders
    */
   placeholders: any = {
-    password: "Password",
-    email: "Email"
+    password: "Type your password",
+    email: "Type your email or username"
   };
   /**
    * @param {Object} messages
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   constructor(private authentication: Authentication) {}
   /**
    * @function
-   * @name LoginComponent#ngOnInit
+   * @name LogoutComponent#ngOnInit
    *
    * @description
    * On init set auth event hook
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
   /**
    * @function
-   * @name LoginComponent#onSubmit
+   * @name LogoutComponent#onSubmit
    *
    * @description
    * Do login attempt
