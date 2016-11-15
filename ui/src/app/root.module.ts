@@ -1,8 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
-import { RootComponent } from "./root-component";
-import { RootRoutingModule } from "./sections/root-routing-module";
+import { RootComponent } from "./root.component";
+import { RootRoutingModule } from "./sections/root-routing.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 

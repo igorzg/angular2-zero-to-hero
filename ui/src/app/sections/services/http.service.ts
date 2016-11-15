@@ -1,6 +1,6 @@
 import {Injectable, Inject} from "@angular/core";
 import {Http, Response, RequestOptions, BaseRequestOptions} from "@angular/http";
-import {Authentication, SESSION_KEY} from "./authentication-service";
+import {Authentication, SESSION_KEY} from "./authentication.service";
 import {getCookie, isString} from "../../helpers";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";

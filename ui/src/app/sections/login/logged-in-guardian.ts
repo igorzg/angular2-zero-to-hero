@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {CanActivate, Router} from "@angular/router";
-import {Authentication} from "../services/authentication-service";
+import {Authentication} from "../services/authentication.service";
 
 /**
  * LoggedInGuard guardian

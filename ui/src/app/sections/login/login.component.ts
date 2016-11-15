@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Authentication, AuthStatus} from "../services/authentication-service";
+import {Authentication, AuthStatus} from "../services/authentication.service";
 /**
  * LoginComponent
  * @constructor
@@ -11,7 +11,7 @@ import {Authentication, AuthStatus} from "../services/authentication-service";
  */
 @Component({
   selector: "login",
-  templateUrl: "login-component.html"
+  templateUrl: "login.component.html"
 })
 export class LoginComponent implements OnInit {
   /**

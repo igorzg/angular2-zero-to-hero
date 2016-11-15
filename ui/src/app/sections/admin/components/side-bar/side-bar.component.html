@@ -1,0 +1,54 @@
+<div class="side-menu">
+
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="brand-wrapper">
+        <!-- Hamburger -->
+        <button type="button" class="navbar-toggle" (click)="toggleNavBar()">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <!-- Brand -->
+        <div class="brand-name-wrapper" *ngIf="!!brandImage">
+          <img bind-src="brandImage" width="50">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Menu -->
+    <div class="side-menu-container">
+      <ul class="nav navbar-nav" [ngClass]="{'slide-in': isNavBarToggled}">
+
+        <li><a href="#"><span class="glyphicon glyphicon-send"></span> User list</a></li>
+        <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span>User groups</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-cloud"></span>Link</a></li>
+
+
+        <!-- Dropdown-->
+        <li class="panel panel-default" id="dropdown">
+          <a href="#" (click)="toggleSubMenu($event)">
+            <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+          </a>
+          <div class="panel-collapse collapse" [ngClass]="{'in': isSubMenuToggled}">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li><a (click)="doLogout($event)" href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+</div>

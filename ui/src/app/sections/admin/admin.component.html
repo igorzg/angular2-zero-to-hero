@@ -1,12 +1,10 @@
 <div class="row">
-
   <!--<div class="absolute-wrapper">abc </div> -->
   <!-- Menu -->
-  <side-bar></side-bar>
-
+  <side-bar (toggle)="onNavBarToggle($event)"></side-bar>
   <!-- Main Content -->
   <div class="container-fluid">
-    <div class="side-body">
+    <div class="side-body" [ngClass]="{'body-slide-in': showNavBar}">
       <h1> Angular from Zero to Hero </h1>
       <pre> Resize the screen to view the left slide menu </pre>
       <p>

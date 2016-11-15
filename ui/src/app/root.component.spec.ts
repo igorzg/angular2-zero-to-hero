@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from "@angular/core/testing";
-import { RootComponent } from "./root-component";
+import { RootComponent } from "./root.component";
 
 describe("App: ZeroToHero", () => {
   beforeEach(() => {

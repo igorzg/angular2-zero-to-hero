@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Authentication} from "../services/authentication-service";
+import {Authentication} from "../services/authentication.service";
 /**
  * LogoutComponent
  * @constructor
