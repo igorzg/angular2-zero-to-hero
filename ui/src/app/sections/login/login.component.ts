@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   labels: any = {
     password: "Password:",
     submit: "Login",
-    email: "Username or email:"
+    email: "Username:"
   };
   /**
    * @param {Object} placeholders
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
    */
   placeholders: any = {
     password: "Type your password",
-    email: "Type your email or username"
+    email: "Type your username"
   };
   /**
    * @param {Object} messages

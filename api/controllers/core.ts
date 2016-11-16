@@ -1,6 +1,7 @@
 import {Assets} from "../components/assets";
-import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid, isEqual} from "typeix";
+import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid, isEqual, isNull} from "typeix";
 import {lookup} from "mime";
+import {UsersCollection} from "../components/collections/users";
 /**
  * Controller example
  * @constructor
@@ -32,6 +33,13 @@ export class CoreController {
    */
   @Inject(RequestReflection)
   request: RequestReflection;
+  /**
+   * @param {UsersCollection} users
+   * @description
+   * Users connection
+   */
+  @Inject(UsersCollection)
+  users: UsersCollection;
   /**
    * @function
    * @name fileLoadAction
@@ -122,15 +130,18 @@ export class CoreController {
    */
   @Action("authenticate")
   @Produces("application/json")
-  doLogin(): string {
+  async doLogin(): Promise<string> {
 
     this.setDefaultHeaders();
 
     let body: any = JSON.parse(this.request.getRequestBody().toString());
+    let user = await this.users.getUser(body.username, body.password);
 
-    if (isEqual(body.username, "admin") && isEqual(body.password, "admin")) {
+    if (!isNull(user)) {
+      let token = uuid();
       return JSON.stringify({
-        token: uuid(),
+        token: token,
+        user: user,
         message: "Success",
         time: Date.now()
       });

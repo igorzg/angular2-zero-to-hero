@@ -1,6 +1,9 @@
-import {Module, Logger, Inject, IAfterConstruct, Router, Methods} from "typeix";
+import {Module, Logger, Inject, IAfterConstruct, Router, Methods, Injector} from "typeix";
 import {Assets} from "./components/assets";
 import {CoreController} from "./controllers/core";
+import {MongodbProvider} from "./components/mongodb";
+import {UsersCollection} from "./components/collections/users";
+
 /**
  * Application entry point
  * @constructor
@@ -12,9 +15,16 @@ import {CoreController} from "./controllers/core";
  */
 @Module({
   controllers: [CoreController],
-  providers: [Logger, Router, Assets]
+  providers: [
+    Logger,
+    Router,
+    Assets,
+    {provide: "connection", useValue: "mongodb://localhost:27017/test"},
+    MongodbProvider,
+    UsersCollection
+  ]
 })
-export class Application implements IAfterConstruct{
+export class Application implements IAfterConstruct {
 
   /**
    * @param {Assets} assetLoader
@@ -52,6 +62,7 @@ export class Application implements IAfterConstruct{
 
     this.logger.enable();
     this.logger.printToConsole();
+    this.logger.setDebugLevel(50);
     this.logger.info("Application.arg", this.assetLoader);
 
     this.router.addRules([

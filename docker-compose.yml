@@ -1,23 +1,22 @@
  version: '2'
  services:
 
-  api:
-   build: ./api
-   ports:
-    - "9000:9000"
-   expose:
-    - "9000"
-   links:
-    - dynamodb
-    - redis
+#  api:
+#   build: ./api
+#   ports:
+#    - "9000:9000"
+#   expose:
+#    - "9000"
+#   links:
+#    - dynamodb
+#    - mongodb
 
-  dynamodb:
+  mongodb:
    ports:
-    - "7777:7777"
+    - "27017:27017"
    expose:
-    - "7777"
-   command: -inMemory
-   image: tray/dynamodb-local
+    - "27017"
+   image: mongo
 
   redis:
    ports:
