@@ -24,22 +24,20 @@
     <div class="side-menu-container">
       <ul class="nav navbar-nav" [ngClass]="{'slide-in': isNavBarToggled}">
 
-        <li><a href="#"><span class="glyphicon glyphicon-send"></span> User list</a></li>
-        <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span>User groups</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-cloud"></span>Link</a></li>
-
+        <li routerLinkActive="active"><a routerLink="/admin/list" ><span class="glyphicon glyphicon-send"></span>List users</a></li>
+        <li routerLinkActive="active"><a routerLink="/admin/add" ><span class="glyphicon glyphicon-user"></span>Add user</a></li>
 
         <!-- Dropdown-->
         <li class="panel panel-default" id="dropdown">
           <a href="#" (click)="toggleSubMenu($event)">
-            <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+            <span class="glyphicon glyphicon-cloud"></span> Sub Level <span class="caret"></span>
           </a>
           <div class="panel-collapse collapse" [ngClass]="{'in': isSubMenuToggled}">
             <div class="panel-body">
               <ul class="nav navbar-nav">
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="#" (click)="$event.preventDefault()">Link</a></li>
+                <li><a href="#" (click)="$event.preventDefault()">Link</a></li>
+                <li><a href="#" (click)="$event.preventDefault()">Link</a></li>
               </ul>
             </div>
           </div>
