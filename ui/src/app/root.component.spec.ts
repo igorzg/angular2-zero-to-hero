@@ -2,6 +2,9 @@
 
 import { TestBed, async } from "@angular/core/testing";
 import { RootComponent } from "./root.component";
+import {RouterModule} from "@angular/router";
+import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 
 describe("App: ZeroToHero", () => {
   beforeEach(() => {
@@ -9,6 +12,7 @@ describe("App: ZeroToHero", () => {
       declarations: [
         RootComponent
       ],
+      imports: [BrowserModule, CommonModule, RouterModule.forRoot([])],
     });
   });
 
@@ -16,18 +20,5 @@ describe("App: ZeroToHero", () => {
     let fixture = TestBed.createComponent(RootComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title "app works!"`, async(() => {
-    let fixture = TestBed.createComponent(RootComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual("app works!");
-  }));
-
-  it("should render title in a h1 tag", async(() => {
-    let fixture = TestBed.createComponent(RootComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector("h1").textContent).toContain("app works!");
   }));
 });

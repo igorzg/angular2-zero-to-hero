@@ -32,7 +32,7 @@ export enum AuthStatus {
  * Is responsible for authenticating in to system
  */
 @Injectable()
-export class Authentication{
+export class Authentication {
   /**
    * @param {Boolean} statusChange
    * @description
@@ -79,6 +79,16 @@ export class Authentication{
       this.doLogout();
     }
   }
+  /**
+   * @function
+   * @name Authentication#getServiceApi
+   *
+   * @description
+   * Return service api url
+   */
+  private getServiceApi(): string {
+    return environment.services.api;
+  }
 
   /**
    * @function
@@ -104,7 +114,7 @@ export class Authentication{
       requestOptions.headers.set("Content-Type", "application/json");
       this.authStatus.next(AuthStatus.LOGIN_ATTEMPT);
       this.http.post(
-        environment.services.api + "/authenticate",
+        this.getServiceApi() + "/authenticate",
         JSON.stringify({
           username: username,
           password: password
