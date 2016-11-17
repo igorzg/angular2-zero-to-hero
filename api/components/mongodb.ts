@@ -11,9 +11,19 @@ import {MongoClient, Db, Collection} from "mongodb";
  */
 @Injectable()
 export class MongodbProvider {
+  /**
+   * @param {Db} db
+   * @description
+   * Db instance
+   */
+  private db: Db;
+  /**
+   * @param {String} connection
+   * @description
+   * Mongodb connection string
+   */
   @Inject("connection")
   private connection: string;
-  private db: Db;
   /**
    * @param {Logger} logger
    * @description

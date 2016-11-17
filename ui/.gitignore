@@ -14,6 +14,7 @@
 .project
 .classpath
 *.launch
+*.ngfactory.ts
 .settings/
 
 # misc

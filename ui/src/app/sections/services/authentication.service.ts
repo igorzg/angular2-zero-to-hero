@@ -88,7 +88,7 @@ export class Authentication{
    * Auth status change event
    */
   onAuthChange(generatorOrNext?: any, error?: any, complete?: any) {
-    return this.authStatus.subscribe(generatorOrNext, error, complete);
+    this.authStatus.subscribe(generatorOrNext, error, complete);
   }
 
   /**

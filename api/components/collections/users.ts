@@ -19,7 +19,11 @@ export class UsersCollection {
    */
   @Inject(Logger)
   logger: Logger;
-
+  /**
+   * @param {MongodbProvider} provider
+   * @description
+   * Mongodb provider
+   */
   @Inject(MongodbProvider)
   private provider: MongodbProvider;
   /**

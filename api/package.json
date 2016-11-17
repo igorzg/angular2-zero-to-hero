@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "tsc -w -p ./tsconfig.json",
     "compile": "tsc -p ./tsconfig.json",
-    "start": "node build/bootstrap.js",
+    "start": "tsc && node build/bootstrap.js",
     "dev": "tsc && nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
