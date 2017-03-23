@@ -32,13 +32,13 @@
     "@types/chai": "^3.4.34",
     "@types/mime": "0.0.29",
     "@types/mocha": "^2.2.32",
-    "@types/mongodb": "^2.1.34",
+    "@types/mongodb": "^2.1.41",
     "@types/node": "^6.0.46",
     "@types/redis": "^0.12.32",
     "mime": "^1.3.4",
     "mongodb": "^2.2.11",
     "redis": "^2.6.3",
-    "typeix": "^1.0.0-beta.8",
+    "typeix": "^1.0.0-beta.9",
     "typescript": "^2.2.1"
   },
   "devDependencies": {

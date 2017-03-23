@@ -1,7 +1,7 @@
 import {Assets} from "../components/assets";
 import {Inject, Produces, Action, Controller, Param, Request, uuid, isEqual, isNull} from "typeix";
 import {lookup} from "mime";
-import {UsersCollection} from "../components/collections/users";
+import {UsersCollection} from "../modules/mongodb/collections/users";
 import {CorsFilter} from "../filters/cors-filter";
 /**
  * Controller example

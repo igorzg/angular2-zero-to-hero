@@ -1,5 +1,6 @@
-import {Injectable, isNull, Logger, Inject} from "typeix";
-import {MongoClient, Db, Collection} from "mongodb";
+import {Inject, isNull, Logger, Provider} from "typeix";
+import {Collection, Db, MongoClient} from "mongodb";
+import {environment} from "../../environment";
 /**
  * Mongodb connection provider
  * @constructor
@@ -9,7 +10,12 @@ import {MongoClient, Db, Collection} from "mongodb";
  * @description
  * Mongodb connection provider
  */
-@Injectable()
+@Provider([
+  {
+    provide: "mongodbConnection",
+    useValue: environment.mongodbConnection
+  }
+])
 export class MongodbProvider {
   /**
    * @param {Db} db
@@ -22,7 +28,7 @@ export class MongodbProvider {
    * @description
    * Mongodb connection string
    */
-  @Inject("connection")
+  @Inject("mongodbConnection")
   private connection: string;
   /**
    * @param {Logger} logger
@@ -31,6 +37,7 @@ export class MongodbProvider {
    */
   @Inject(Logger)
   logger: Logger;
+
   /**
    * @function
    * @name MongodbProvider#getConnection
@@ -41,6 +48,7 @@ export class MongodbProvider {
   getConnection(): Promise<Db> {
     return MongoClient.connect(this.connection);
   }
+
   /**
    * @function
    * @name MongodbProvider#getCollection

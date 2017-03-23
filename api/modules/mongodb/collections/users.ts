@@ -1,5 +1,5 @@
 import {Injectable, Inject, Logger} from "typeix";
-import {MongodbProvider} from "../mongodb";
+import {MongodbProvider} from "../mongodb.provider";
 import {Collection} from "mongodb";
 /**
  * Users collection provider
