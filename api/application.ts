@@ -2,6 +2,7 @@ import {Module, Logger, Inject, IAfterConstruct, Router, Methods, LogLevels} fro
 import {Assets} from "./components/assets";
 import {CoreController} from "./controllers/core";
 import {MongodbModule} from "./modules/mongodb/mongodb.module";
+import {AdminModule} from "./modules/admin/admin.module";
 /**
  * Application entry point
  * @constructor
@@ -12,7 +13,7 @@ import {MongodbModule} from "./modules/mongodb/mongodb.module";
  * \@Module is used to define application entry point class
  */
 @Module({
-  imports: [MongodbModule],
+  imports: [MongodbModule, AdminModule],
   controllers: [CoreController],
   providers: [
     Logger,

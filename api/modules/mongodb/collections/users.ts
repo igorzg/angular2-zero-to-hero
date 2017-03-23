@@ -1,6 +1,6 @@
-import {Injectable, Inject, Logger} from "typeix";
+import {Inject, Injectable, Logger} from "typeix";
 import {MongodbProvider} from "../mongodb.provider";
-import {Collection} from "mongodb";
+import {Collection, InsertOneWriteOpResult} from "mongodb";
 /**
  * Users collection provider
  * @constructor
@@ -26,6 +26,7 @@ export class UsersCollection {
    */
   @Inject(MongodbProvider)
   private provider: MongodbProvider;
+
   /**
    * @function
    * @name UsersCollection#collection
@@ -36,6 +37,18 @@ export class UsersCollection {
   collection(): Promise<Collection> {
     return this.provider.getCollection("users");
   }
+
+  /**
+   * Create user
+   * @param username
+   * @param password
+   * @returns {Promise<InsertOneWriteOpResult>}
+   */
+  async createUser(username: string, password: string): Promise<InsertOneWriteOpResult> {
+    let collection = await this.collection();
+    return await collection.insertOne({username, password});
+  }
+
   /**
    * @function
    * @name UsersCollection#getUser
@@ -47,6 +60,7 @@ export class UsersCollection {
     let collection = await this.collection();
     return collection.find().toArray();
   }
+
   /**
    * @function
    * @name UsersCollection#getUser
