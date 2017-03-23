@@ -11,4 +11,4 @@ import {HttpService} from "./services/http.service";
   ],
   providers: [Authentication, HttpService]
 })
-export class RootRoutingModule{}
+export class RootRoutingModule {}

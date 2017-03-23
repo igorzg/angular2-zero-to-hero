@@ -8,7 +8,7 @@
 #   expose:
 #    - "9000"
 #   links:
-#    - dynamodb
+#    - redis
 #    - mongodb
 
   mongodb:

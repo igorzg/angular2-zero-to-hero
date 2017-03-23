@@ -29,7 +29,8 @@ import {UsersAddComponent} from "./sections/users/add/users-add.component";
           },
           {
             path: "",
-            redirectTo: "list"
+            redirectTo: "list",
+            pathMatch: "full"
           }
         ]
       }

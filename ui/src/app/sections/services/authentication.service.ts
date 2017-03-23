@@ -4,7 +4,7 @@ import {environment} from "../../../environments/environment";
 import {BehaviorSubject} from "rxjs";
 import {getCookie, removeCookie, setCookie} from "../../helpers";
 import {Router} from "@angular/router";
-import {setTimeout} from "timers";
+
 
 export const SESSION_KEY = 'Authorization';
 /**
