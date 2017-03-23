@@ -29,19 +29,17 @@
   },
   "homepage": "https://github.com/igorzg/angular2-zero-to-hero#readme",
   "dependencies": {
-    "@types/aws-sdk": "0.0.41",
     "@types/chai": "^3.4.34",
     "@types/mime": "0.0.29",
     "@types/mocha": "^2.2.32",
     "@types/mongodb": "^2.1.34",
     "@types/node": "^6.0.46",
     "@types/redis": "^0.12.32",
-    "aws-sdk": "^2.7.0",
     "mime": "^1.3.4",
     "mongodb": "^2.2.11",
     "redis": "^2.6.3",
-    "typeix": "1.0.0-alpha-19",
-    "typescript": "^2.0.9"
+    "typeix": "^1.0.0-beta.8",
+    "typescript": "^2.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

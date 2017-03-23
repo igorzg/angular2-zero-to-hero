@@ -1,7 +1,8 @@
 import {Assets} from "../components/assets";
-import {Inject, Produces, Action, Controller, Param, RequestReflection, uuid, isEqual, isNull} from "typeix";
+import {Inject, Produces, Action, Controller, Param, Request, uuid, isEqual, isNull} from "typeix";
 import {lookup} from "mime";
 import {UsersCollection} from "../components/collections/users";
+import {CorsFilter} from "../filters/cors-filter";
 /**
  * Controller example
  * @constructor
@@ -15,6 +16,7 @@ import {UsersCollection} from "../components/collections/users";
  */
 @Controller({
   name: "core",
+  filters: [CorsFilter],
   providers: [] // type of local instances within new request since controller is instanciated on each request
 })
 export class CoreController {
@@ -31,8 +33,8 @@ export class CoreController {
    * @description
    * Request reflection
    */
-  @Inject(RequestReflection)
-  request: RequestReflection;
+  @Inject(Request)
+  request: Request;
   /**
    * @param {UsersCollection} users
    * @description
@@ -54,32 +56,6 @@ export class CoreController {
     return this.fileLoadAction("favicon.ico");
   }
 
-  /**
-   * @function
-   * @name setDefaultHeaders
-   *
-   * @description
-   * Set set default headers
-   *
-   */
-  private setDefaultHeaders() {
-    this.request.setResponseHeader("Access-Control-Allow-Origin", "*");
-    this.request.setResponseHeader("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, X-Api-Version, X-File-Name");
-    this.request.setResponseHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS, PATCH");
-  }
-
-  /**
-   * @function
-   * @name optionsMethod
-   *
-   * @description
-   * Handler for options method
-   */
-  @Action("options")
-  optionsMethod() {
-    this.setDefaultHeaders();
-    return "";
-  }
   /**
    * @function
    * @name fileLoadAction
@@ -132,9 +108,7 @@ export class CoreController {
   @Produces("application/json")
   async doLogin(): Promise<string> {
 
-    this.setDefaultHeaders();
-
-    let body: any = JSON.parse(this.request.getRequestBody().toString());
+    let body: any = JSON.parse(this.request.getBody().toString());
     let user = await this.users.getUser(body.username, body.password);
 
     if (!isNull(user)) {
