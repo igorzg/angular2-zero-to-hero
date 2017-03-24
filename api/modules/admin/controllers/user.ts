@@ -48,7 +48,7 @@ export class UserController {
    */
   @Action("create")
   @Produces("application/json")
-  async actionIndex(@Param("user") username: string, @Param("pass") password: string): string {
+  async actionIndex(@Param("user") username: string, @Param("pass") password: string): Promise<string> {
     if (isPresent(username) && isPresent(password)) {
       let result: InsertOneWriteOpResult = await this.users.createUser(username, password);
       return "USER_CREATED:" + JSON.stringify(result);
